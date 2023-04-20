@@ -1,4 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component,  OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { ShoppingListService } from 'src/app/services/shopping.service';
 import { Ingredient } from 'src/app/shared/ingredient.model';
 
@@ -7,20 +9,34 @@ import { Ingredient } from 'src/app/shared/ingredient.model';
   templateUrl: './shoppint-edit.component.html',
   styleUrls: ['./shoppint-edit.component.css']
 })
-export class ShoppintEditComponent implements OnInit {
-
-  @ViewChild('inputName') inputNameRef: ElementRef;
-  @ViewChild('inputAmount') inputAmountRef: ElementRef;  
-
+export class ShoppintEditComponent implements OnInit,OnDestroy {
+  @ViewChild('f') shoppingListForm: NgForm;
+  subscription:Subscription
+  editmode: boolean = false
+  editeItemIndex: number;
+  editedItem: Ingredient;
   constructor(private shopingListService:ShoppingListService) { }
 
   ngOnInit(): void {
+    this.subscription = this.shopingListService.startEditing.subscribe((index: number) => {
+      this.editeItemIndex = index
+      this.editmode = true;
+      this.editedItem = this.shopingListService.getIngredient(index)
+      this.shoppingListForm.setValue({
+        name: this.editedItem.name,
+        amount:this.editedItem.amount
+      })
+    });
   }
-  newIngredient(){
-    const ingName = this.inputNameRef.nativeElement.value;
-    const ingAmount = this.inputAmountRef.nativeElement.value;
-    this.shopingListService.addNewIngredient(ingName, ingAmount);
+  // here during submission of the form we pass the values html inputs using the ngForm and we create a new ingredient and add that to the shopping List using the shopingListService
+  newIngredient(form:NgForm){
+    const value = form.value
+    const newIngredient = new Ingredient(value.name, value.amount)
+    this.shopingListService.addNewIngredient(newIngredient);
     
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }

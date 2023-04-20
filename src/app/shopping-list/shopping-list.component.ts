@@ -17,8 +17,13 @@ export class ShoppingListComponent implements OnInit,OnDestroy {
     this.ingredients = this.shopingListService.getShoppingList();
     this.changedObserved = this.shopingListService.ingredientChanged.subscribe((ingredients:Ingredient[]) =>
     {
+     
       this.ingredients = ingredients
     })
+    console.log(this.changedObserved,"here")
+  }
+  editMYItem(index:number) {
+    this.shopingListService.startEditing.next(index);
   }
   addNewIngreDient(ingredient:Ingredient){
     this.ingredients.push(ingredient);

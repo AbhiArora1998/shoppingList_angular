@@ -1,20 +1,22 @@
 <div class="row">
     <div class="col-xs-12">
-        <form >
+        <!-- ngSubmit this is used when a person submit the form this can provide access to the form during submission is we pass ingredientFrom -->
+        <!-- we need to tell the form that this tag is of type ngForm so that we can get access to all the formContorl stuff we can  -->
+        <form (ngSubmit)="newIngredient(f)" #f="ngForm">
             <div class="row">
                 <div class="col-sm-5 form-group">
                     <label for="name">Name</label>
-                    <input type="text" id="name" class="form-control" #inputName>
+                    <input type="text" id="name" class="form-control" name="name" ngModel required >
                 </div>
 
                 <div class="col-sm-2 form-group">
                     <label for="amount">Amount</label>
-                    <input type="text" id="amount" class="form-control" #inputAmount>
+                    <input type="text" id="amount" class="form-control" name="amount" ngModel required pattern="^[1-9]+[0-9]*$">
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <button class="btn btn-success" style="margin-right: 1%;" type="button" (click)="newIngredient()">Add</button>
+                    <button class="btn btn-success" style="margin-right: 1%;" type="submit" [disabled]="!f.valid" >Add</button>
                     <button class="btn btn-danger" type="button" style="margin-right: 1%;">Delete</button>
                     <button class="btn btn-primary" type="button" >Clear</button>
 
