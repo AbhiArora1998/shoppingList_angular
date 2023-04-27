@@ -1,10 +1,13 @@
 import { EventEmitter, Injectable } from "@angular/core";
+import { Subject } from "rxjs";
 import { Recipe } from "../recipes/recipe.model";
 import { Ingredient } from "../shared/ingredient.model";
 import { ShoppingListService } from "./shopping.service";
 
 @Injectable()
 export class RecipeService{
+
+  recipeChanged = new Subject<Recipe[]>();
   recipeClicked = new EventEmitter<Recipe>();
   toShoppingList = new EventEmitter<string>();
     //arrays are reference type in javascript 
@@ -21,7 +24,7 @@ export class RecipeService{
     
   }
 
-      getRecipes(){
+  getRecipes(){
           // we should not pass the reference
           // slice will provide the copy of the array  
           return this.recipesArray.slice();
@@ -33,4 +36,15 @@ export class RecipeService{
   recipeIdSelected(id:number) {
     return this.recipesArray[id];
   }
+
+  addnewRecipe(recipe: Recipe) {
+    this.recipesArray.push(recipe);
+    this.recipeChanged.next(this.recipesArray.slice())
+  }
+  updateRecipe(index: number, recipe: Recipe) {
+    this.recipesArray[index] = recipe;
+    this.recipeChanged.next(this.recipesArray.slice())
+
+  }
+
 }
