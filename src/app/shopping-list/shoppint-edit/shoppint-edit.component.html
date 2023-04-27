@@ -2,7 +2,7 @@
     <div class="col-xs-12">
         <!-- ngSubmit this is used when a person submit the form this can provide access to the form during submission is we pass ingredientFrom -->
         <!-- we need to tell the form that this tag is of type ngForm so that we can get access to all the formContorl stuff we can  -->
-        <form (ngSubmit)="newIngredient(f)" #f="ngForm">
+        <form (ngSubmit)="onSubmitForm(f)" #f="ngForm">
             <div class="row">
                 <div class="col-sm-5 form-group">
                     <label for="name">Name</label>
@@ -16,9 +16,9 @@
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <button class="btn btn-success" style="margin-right: 1%;" type="submit" [disabled]="!f.valid" >Add</button>
-                    <button class="btn btn-danger" type="button" style="margin-right: 1%;">Delete</button>
-                    <button class="btn btn-primary" type="button" >Clear</button>
+                    <button class="btn btn-success" style="margin-right: 1%;" type="submit" [disabled]="!f.valid" >{{editmode ? 'Update' :'Add'}}</button>
+                    <button class="btn btn-danger" type="button" style="margin-right: 1%;" (click)="onDelete()" *ngIf="editmode" >Delete</button>
+                    <button class="btn btn-primary" type="button" (click)="onClear()" >Clear</button>
 
                 </div>
             </div>

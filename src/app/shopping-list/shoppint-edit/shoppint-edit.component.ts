@@ -29,11 +29,26 @@ export class ShoppintEditComponent implements OnInit,OnDestroy {
     });
   }
   // here during submission of the form we pass the values html inputs using the ngForm and we create a new ingredient and add that to the shopping List using the shopingListService
-  newIngredient(form:NgForm){
+  onSubmitForm(form:NgForm){
     const value = form.value
     const newIngredient = new Ingredient(value.name, value.amount)
-    this.shopingListService.addNewIngredient(newIngredient);
-    
+    if (this.editmode) {
+      this.shopingListService.updateIngredients(this.editeItemIndex,newIngredient)
+    } else {
+      this.shopingListService.addNewIngredient(newIngredient);
+    }
+    this.editmode = false;
+    form.reset() 
+  }
+  onDelete() {
+    this.shopingListService.deleteIngredient(this.editeItemIndex)
+    this.onClear();
+
+  }
+
+  onClear() {
+    this.shoppingListForm.reset();
+    this.editmode = false;
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
