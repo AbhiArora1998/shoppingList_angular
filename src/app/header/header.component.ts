@@ -1,4 +1,5 @@
 import { Component, Output,EventEmitter  } from "@angular/core";
+import { DatastorageService } from "../shared/data_storage.service";
 
 
 @Component({
@@ -8,9 +9,17 @@ import { Component, Output,EventEmitter  } from "@angular/core";
 
 export class HeaderComponent{
     collapsed = true;
-    @Output() featureSelected = new EventEmitter();
-    onSelect(feature:string){
-        console.log(feature)
-        this.featureSelected.emit(feature);
+    // @Output() featureSelected = new EventEmitter();
+
+    constructor(private datastorageService:DatastorageService){}
+    // onSelect(feature:string){
+    //     console.log(feature)
+    //     this.featureSelected.emit(feature);
+    // }
+    onSaveData() {
+        this.datastorageService.storeRcipes()
+    }
+    onfetchData() {
+        this.datastorageService.fetchRecipes()
     }
 }

@@ -11,14 +11,17 @@ export class RecipeService{
   recipeClicked = new EventEmitter<Recipe>();
   toShoppingList = new EventEmitter<string>();
     //arrays are reference type in javascript 
-   private recipesArray:Recipe[] = [
+  private recipesArray: Recipe[] = []
+  
+  /*
+  [
      new Recipe('A test recipe', 'this is simply a test', 'https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/british_shakshuka_26737_16x9.jpg', [
           
        new Ingredient('meat',1),new Ingredient('bread',2), ]),
      new Recipe('Another test recipe', 'this is simply a test', 'https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/british_shakshuka_26737_16x9.jpg', [
       new Ingredient('eggs',1),new Ingredient('milk',2),
         ])
-  ];
+  ];*/ 
   
   constructor(private slService : ShoppingListService,) {
     
@@ -48,6 +51,10 @@ export class RecipeService{
   }
   deleteRecipe(index:number) {
     this.recipesArray.splice(index, 1);
+    this.recipeChanged.next(this.recipesArray.slice())
+  }
+  setRecipes(recipes:Recipe[]) {
+    this.recipesArray = recipes
     this.recipeChanged.next(this.recipesArray.slice())
   }
 
