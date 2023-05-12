@@ -6,6 +6,7 @@ import { ShoppingListComponent } from "./shopping-list/shopping-list.component";
 import { SelectRecipeComponent} from './recipes/select-recipe/select-recipe.component'
 import { RecipeDetailComponent } from "./recipes/recipe-detail/recipe-detail.component";
 import { RecipeEditComponent } from "./recipes/recipe-edit/recipe-edit.component";
+import { AuthComponent } from "./auth/auth.component";
 
 
 const appRoutes: Routes = [
@@ -19,7 +20,8 @@ const appRoutes: Routes = [
         {path:':id/edit', component:RecipeEditComponent},
         
     ] },
-    {path:'shoppingList' ,component:ShoppingListComponent}
+    { path: 'shoppingList', component: ShoppingListComponent },
+    {path :'auth',component:AuthComponent}
     
 ]
 
