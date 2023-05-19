@@ -7,6 +7,7 @@ import { SelectRecipeComponent} from './recipes/select-recipe/select-recipe.comp
 import { RecipeDetailComponent } from "./recipes/recipe-detail/recipe-detail.component";
 import { RecipeEditComponent } from "./recipes/recipe-edit/recipe-edit.component";
 import { AuthComponent } from "./auth/auth.component";
+import { AuthGuard } from "./auth/auth.guard";
 
 
 const appRoutes: Routes = [
@@ -19,7 +20,7 @@ const appRoutes: Routes = [
         
         {path:':id/edit', component:RecipeEditComponent},
         
-    ] },
+    ],canActivate:[AuthGuard] },
     { path: 'shoppingList', component: ShoppingListComponent },
     {path :'auth',component:AuthComponent}
     
@@ -27,6 +28,9 @@ const appRoutes: Routes = [
 
 @NgModule({
     imports: [RouterModule.forRoot(appRoutes)],
+    // every module work on its own they do not communicate with eachother 
+    // hence it will be available only here in this module but we want the entire app to access the components 
+    //  hence we will need to export it and put in the app.module.ts in the module section 
     exports:[RouterModule]
 
 })
