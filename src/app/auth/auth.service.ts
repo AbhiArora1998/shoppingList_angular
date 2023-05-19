@@ -4,6 +4,7 @@ import { BehaviorSubject,  } from "rxjs";
 import { tap } from "rxjs/operators";
 import { UserModel } from "./user.model";
 import { Router } from "@angular/router";
+import { environment } from "src/environments/environment";
 
 export interface AuthReceived{
     kind: string
@@ -23,12 +24,13 @@ export class AuthService{
     // behaviorsubject for the ondemand model. it can give you the value to a previous value even  before even subscibing it
     // it takes initial value which we will pass null 
     user = new BehaviorSubject<UserModel>(null);
-    tokenExpirationTime:any
+    tokenExpirationTime: any
+    
     constructor(private http:HttpClient, private router:Router) {
         
     }
     signUp(email:string, password:string) {
-      return  this.http.post<AuthReceived>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAIT0--mgt9qhZiUGUw3hVZOO-l2Ha3jyM', {
+      return  this.http.post<AuthReceived>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='+environment.fireBaseKey, {
             email: email,
             password: password,
             returnSecureToken:true
@@ -42,7 +44,7 @@ export class AuthService{
     }
 
     login(email: string, password: string) {
-      return  this.http.post<AuthReceived>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAIT0--mgt9qhZiUGUw3hVZOO-l2Ha3jyM', {
+      return  this.http.post<AuthReceived>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='+environment.fireBaseKey, {
             email: email,
             password: password,
             returnSecureToken:true
