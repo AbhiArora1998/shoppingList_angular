@@ -1,3 +1,10 @@
+1) Sign Up with any email and password 
+![image](https://github.com/AbhiArora1998/shoppingList_angular/assets/90983067/9db21549-307d-4e63-b223-def7f968f3e9)
+
+2) Once Signed in... on left side click manage and fetch data to view all the recipe list
+![image](https://github.com/AbhiArora1998/shoppingList_angular/assets/90983067/634ef919-18d6-40c6-bf38-9df783d364ad)
+
+
 # ShoppingList
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.7.
