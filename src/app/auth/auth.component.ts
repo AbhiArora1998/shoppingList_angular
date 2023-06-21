@@ -53,4 +53,7 @@ export class AuthComponent{
         authForm.reset()
       
     }
+    closeAlert(close:boolean) {
+        this.error = null
+    }
 }
