@@ -12,16 +12,13 @@
 </div>
 <div class="row">
     <div class="col-xs-12">
-       <div appDropdown class="btn-group">
-            <button type="button" class="btn btn-primary dropdown-toggle">
-                Manage Recipe <span class="caret"> </span></button>
-            <ul class="dropdown-menu">
-                <li><a  (click)="inShopping('shopping')">To shopping list</a></li>
-                
-
-                <li><a (click)="editRecipe()">Edit Recipe</a></li>
-                <li><a (click)="deleteREcipe()" >Delete Recipe</a></li>
-            </ul>
+       <div >
+            <button (click)="inShopping('shopping')" type="button" class="btn btn-primary ">
+                Add to Shopping List</button>
+           <button style="margin-left: 3%;margin-right: 3%;" (click)="editRecipe()" type="button" class="btn btn-secondary ">
+                Edit Recipe</button>
+            <button (click)="deleteREcipe()"  type="button" class="btn btn-danger ">
+                    Delete Recipe</button> 
         </div>
     </div>
 </div>
