@@ -15,7 +15,7 @@ export class RecipeItemComponent implements OnInit {
   constructor(private recipeService:RecipeService,) { }
 
   ngOnInit(): void {
-    
+    console.log(this.recipe,"hhhhhh")
   }
 
   

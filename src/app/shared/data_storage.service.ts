@@ -36,11 +36,13 @@ export class DatastorageService{
                 return this.http.get<Recipe[]>(this.url + "/recipes.json", {
                        params: new HttpParams().set('auth' , user.token)
                    });
-         }),map(recipes => {
+            }), map(recipes => {
+             console.log(recipes,"from map")
             return recipes.map(recipe => {
-                return {...recipe, ingredients:recipe.ingredients?recipe.ingredients:[]}
+                return {...recipe, ingredient:(recipe.ingredient && recipe.ingredient.length>0)?recipe.ingredient:[]}
         })
          })).subscribe(Response => {
+             console.log(Response,'I datastorage')
             this.recipeService.setRecipes(Response)
             
     });

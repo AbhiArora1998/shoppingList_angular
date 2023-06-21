@@ -9,16 +9,16 @@ import { Ingredient } from '../shared/ingredient.model';
   styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit,OnDestroy {
-  ingredients: Ingredient[];
+  ingredient: Ingredient[];
   changedObserved: Subscription;
   constructor(private shopingListService:ShoppingListService) { }
 
   ngOnInit(): void {
-    this.ingredients = this.shopingListService.getShoppingList();
-    this.changedObserved = this.shopingListService.ingredientChanged.subscribe((ingredients:Ingredient[]) =>
+    this.ingredient = this.shopingListService.getShoppingList();
+    this.changedObserved = this.shopingListService.ingredientChanged.subscribe((ingredient:Ingredient[]) =>
     {
      
-      this.ingredients = ingredients
+      this.ingredient = ingredient
     })
     console.log(this.changedObserved,"here")
   }
@@ -26,7 +26,7 @@ export class ShoppingListComponent implements OnInit,OnDestroy {
     this.shopingListService.startEditing.next(index);
   }
   addNewIngreDient(ingredient:Ingredient){
-    this.ingredients.push(ingredient);
+    this.ingredient.push(ingredient);
   }
   ngOnDestroy() {
     this.changedObserved.unsubscribe();
