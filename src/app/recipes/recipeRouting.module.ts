@@ -8,7 +8,7 @@ import { SelectRecipeComponent } from "./select-recipe/select-recipe.component";
 
 // all the routes that we are using 
 const routes: Routes = [
-    { path: 'recipe', component: RecipesComponent, children: [
+    { path: '', component: RecipesComponent, children: [
         // we can visit to the empty path for the recipe so that it does not need endpoint after and just display please select the recipe
     { path: '', component: SelectRecipeComponent },
     { path: 'new', component: RecipeEditComponent },

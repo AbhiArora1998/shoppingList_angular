@@ -11,10 +11,10 @@ import { AuthGuard } from "./auth/auth.guard";
 
 
 const appRoutes: Routes = [
-    { path: '', redirectTo:'/recipe' ,pathMatch:'full' }
-    ,
-    { path: 'shoppingList', component: ShoppingListComponent },
-    {path :'auth',component:AuthComponent}
+    { path: '', redirectTo: '/recipe', pathMatch: 'full' },
+    {path:'recipe' , loadChildren: ()=>import('./recipes/recipe.module').then(m=>m.RecipeModule)}
+    
+    
     
 ]
 

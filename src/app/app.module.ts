@@ -5,14 +5,15 @@ import {HeaderComponent} from './header/header.component';
 import {DropdownDirective} from './shared/dropdown.directive';
 import { ShoppingListService } from './services/shopping.service';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {  ReactiveFormsModule } from '@angular/forms';
 import { RecipeService } from './services/recipe.service';
 import { HttpClientModule} from '@angular/common/http'
-import { AuthComponent } from './auth/auth.component';
 import { LoadingSpinnerComponent } from './shared/loadingSpinner.component';
 import { AlertComponent } from './shared/alert.component';
-import { RecipeModule } from './recipes/recipe.module';
-import { ShoppingModule } from './shopping-list/shopping.module';
+// import { ShoppingModule } from './shopping-list/shopping.module';
+import { FeatureModule } from './shopping-list/feature.module';
+import { FeatureRoutingModule } from './shopping-list/featureRouting.module';
+import { AuthRoutingModule } from './auth/authRouting.module';
 
 
 @NgModule({
@@ -21,9 +22,10 @@ import { ShoppingModule } from './shopping-list/shopping.module';
     AppComponent,
     HeaderComponent,
     DropdownDirective,
-    AuthComponent,
+    
     LoadingSpinnerComponent,
     AlertComponent,
+    
   ],
   imports: [
     // this allow us to import other modules into this modules
@@ -31,11 +33,12 @@ import { ShoppingModule } from './shopping-list/shopping.module';
 
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
+    AuthRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RecipeModule,
-    ShoppingModule
+  
+    FeatureRoutingModule,
+    FeatureModule
   ],
   // any services that we are planning to inject will get in the providers
   
