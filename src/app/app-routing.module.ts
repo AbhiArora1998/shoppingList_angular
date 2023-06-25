@@ -11,16 +11,8 @@ import { AuthGuard } from "./auth/auth.guard";
 
 
 const appRoutes: Routes = [
-    { path: '', redirectTo:'/recipe' ,pathMatch:'full' },
-    { path: 'recipe', component: RecipesComponent, children: [
-            // we can visit to the empty path for the recipe so that it does not need endpoint after and just display please select the recipe
-        { path: '', component: SelectRecipeComponent },
-        { path: 'new', component: RecipeEditComponent },
-        { path: ':id', component: RecipeDetailComponent },
-        
-        {path:':id/edit', component:RecipeEditComponent},
-        
-    ],canActivate:[AuthGuard] },
+    { path: '', redirectTo:'/recipe' ,pathMatch:'full' }
+    ,
     { path: 'shoppingList', component: ShoppingListComponent },
     {path :'auth',component:AuthComponent}
     

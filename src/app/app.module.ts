@@ -37,7 +37,10 @@ import { ShoppingModule } from './shopping-list/shopping.module';
     RecipeModule,
     ShoppingModule
   ],
-  providers: [ShoppingListService,RecipeService],
+  // any services that we are planning to inject will get in the providers
+  
+  providers: [ShoppingListService, RecipeService],
+  // bootstrap is really important to start your app it defines which component is directly available in the index.html
   bootstrap: [AppComponent]
 })
 export class AppModule { }
