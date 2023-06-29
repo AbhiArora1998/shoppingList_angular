@@ -27,12 +27,7 @@ import { SelectRecipeComponent } from "./select-recipe/select-recipe.component";
     ,
     // then we export the components in case other modules which imports recipe module can use it 
     exports: [
-        RecipesComponent,
-        RecipeListComponent,
-        RecipeDetailComponent,
-        RecipeItemComponent,
-        SelectRecipeComponent,
-        RecipeEditComponent,
+     
     ],
 })
 export class RecipeModule{

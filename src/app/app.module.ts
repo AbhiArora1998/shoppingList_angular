@@ -10,10 +10,11 @@ import { RecipeService } from './services/recipe.service';
 import { HttpClientModule} from '@angular/common/http'
 import { LoadingSpinnerComponent } from './shared/loadingSpinner.component';
 import { AlertComponent } from './shared/alert.component';
-// import { ShoppingModule } from './shopping-list/shopping.module';
+
 import { FeatureModule } from './shopping-list/feature.module';
 import { FeatureRoutingModule } from './shopping-list/featureRouting.module';
-import { AuthRoutingModule } from './auth/authRouting.module';
+
+
 
 
 @NgModule({
@@ -33,12 +34,12 @@ import { AuthRoutingModule } from './auth/authRouting.module';
 
     BrowserModule,
     AppRoutingModule,
-    AuthRoutingModule,
+  
     ReactiveFormsModule,
     HttpClientModule,
   
-    FeatureRoutingModule,
-    FeatureModule
+    
+    
   ],
   // any services that we are planning to inject will get in the providers
   
